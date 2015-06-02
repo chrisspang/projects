@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150602161802) do
+ActiveRecord::Schema.define(version: 20150602214848) do
 
   create_table "blurbs", force: :cascade do |t|
     t.integer  "datasource_id"
@@ -21,6 +21,13 @@ ActiveRecord::Schema.define(version: 20150602161802) do
   end
 
   add_index "blurbs", ["datasource_id"], name: "index_blurbs_on_datasource_id"
+
+  create_table "builders", force: :cascade do |t|
+    t.string   "name"
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "datasources", force: :cascade do |t|
     t.string   "name"

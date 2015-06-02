@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :builders
   resources :blurbs
   resources :images
   resources :datasources

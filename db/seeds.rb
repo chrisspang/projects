@@ -60,6 +60,22 @@ Image.create([
               }
              ])
 
+Builder.create([
+                {
+                  name: "builder_a",
+                  title: "Builder A"
+                },
+                {
+                  name: "builder_b",
+                  title: "Builder B"
+                },
+                {
+                  name: "builder_c",
+                  title: "Builder C"
+                },
+               ])
+
 puts "Created #{Image.count} Images"
 puts "Created #{Blurb.count} Blurbs"
 puts "Created #{Datasource.count} Datasources"
+puts "Created #{Builder.count} Builders"
