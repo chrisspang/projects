@@ -3,5 +3,6 @@ class Blurb < ActiveRecord::Base
 
   has_many :images, dependent: :destroy
 
+  belongs_to :project
   belongs_to :datasource
 end

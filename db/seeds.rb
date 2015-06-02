@@ -6,9 +6,13 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Blurb.destroy_all
 Datasource.destroy_all
+Builder.destroy_all
+Project.destroy_all
+Blurb.destroy_all
 Image.destroy_all
+
+puts "Destroyed all"
 
 Datasource.create([
                    {
@@ -25,40 +29,7 @@ Datasource.create([
                    }
                   ])
 
-blurb = Blurb.create({
-                    datasource: Datasource.first,
-                    description: 'Here is some blurb text'
-                  })
-
-Blurb.create([
-              {
-                datasource: Datasource.last,
-                description: 'Here is some other blurb text - isnt it cool'
-              },
-              {
-                datasource: Datasource.first,
-                description: 'And even more blurbies'
-              },
-             ])
-
-Image.create([
-              {
-                url: 'http://a.jpg',
-                blurb: blurb
-              },
-              {
-                url: 'http://b.jpg',
-                blurb: blurb
-              },
-              {
-                url: 'http://c.jpg',
-                blurb: Blurb.last
-              },
-              {
-                url: 'http://d.jpg',
-                blurb: Blurb.last
-              }
-             ])
+puts "Datasources created"
 
 Builder.create([
                 {
@@ -74,6 +45,8 @@ Builder.create([
                   title: "Builder C"
                 },
                ])
+
+puts "Builders created"
 
 Project.create([
                 {
@@ -94,6 +67,55 @@ Project.create([
                 }
                ])
 
+puts "Projects created"
+
+Blurb.create([
+              {
+                datasource: Datasource.last,
+                description: 'Here is some other blurb text - isnt it cool',
+                project: Project.first,
+              },
+              {
+                datasource: Datasource.first,
+                description: 'And even more blurbies',
+                project: Project.first,
+              },
+              {
+                datasource: Datasource.last,
+                description: 'Blurb part II',
+                project: Project.last,
+              },
+              {
+                datasource: Datasource.first,
+                description: 'Blurb part II II',
+                project: Project.last,
+              },
+             ])
+
+puts "Blurbs created"
+
+Image.create([
+              {
+                url: 'http://a.jpg',
+                blurb: Blurb.first
+              },
+              {
+                url: 'http://b.jpg',
+                blurb: Blurb.first
+              },
+              {
+                url: 'http://c.jpg',
+                blurb: Blurb.last
+              },
+              {
+                url: 'http://d.jpg',
+                blurb: Blurb.last
+              }
+             ])
+
+puts "Images created"
+
+puts ""
 puts "Created #{Image.count} Images"
 puts "Created #{Blurb.count} Blurbs"
 puts "Created #{Datasource.count} Datasources"
