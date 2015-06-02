@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150602160533) do
+ActiveRecord::Schema.define(version: 20150602161400) do
 
   create_table "datasources", force: :cascade do |t|
     t.string   "name"
@@ -19,5 +19,14 @@ ActiveRecord::Schema.define(version: 20150602160533) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "images", force: :cascade do |t|
+    t.string   "url"
+    t.integer  "blurb_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "images", ["blurb_id"], name: "index_images_on_blurb_id"
 
 end
