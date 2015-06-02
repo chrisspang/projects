@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Datasource:</strong>
+  <%= @blurb.datasource %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @blurb.description %>
+</p>
+
+<%= link_to 'Edit', edit_blurb_path(@blurb) %> |
+<%= link_to 'Back', blurbs_path %>

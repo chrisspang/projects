@@ -1,0 +1,4 @@
+class Blurb < ActiveRecord::Base
+  has_many :images
+  belongs_to :datasource
+end
