@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150602214848) do
+ActiveRecord::Schema.define(version: 20150602215726) do
 
   create_table "blurbs", force: :cascade do |t|
     t.integer  "datasource_id"
@@ -44,5 +44,18 @@ ActiveRecord::Schema.define(version: 20150602214848) do
   end
 
   add_index "images", ["blurb_id"], name: "index_images_on_blurb_id"
+
+  create_table "projects", force: :cascade do |t|
+    t.string   "name"
+    t.string   "title"
+    t.boolean  "verified"
+    t.decimal  "latitude"
+    t.decimal  "longitude"
+    t.integer  "builder_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "projects", ["builder_id"], name: "index_projects_on_builder_id"
 
 end

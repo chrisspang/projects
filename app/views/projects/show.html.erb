@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @project.name %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @project.title %>
+</p>
+
+<p>
+  <strong>Verified:</strong>
+  <%= @project.verified %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @project.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @project.longitude %>
+</p>
+
+<p>
+  <strong>Builder:</strong>
+  <%= @project.builder %>
+</p>
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>

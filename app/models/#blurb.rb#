@@ -1,4 +1,8 @@
 class Blurb < ActiveRecord::Base
-  has_many :images
+  validates :description, presence: true, length: { minimum: 2, maximum: 200 }
+
+  has_one :project
+  has_many :images, dependent: :destroy
+
   belongs_to :datasource
 end

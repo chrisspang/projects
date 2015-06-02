@@ -75,7 +75,27 @@ Builder.create([
                 },
                ])
 
+Project.create([
+                {
+                  name: 'project_a',
+                  title: 'Project A',
+                  verified: false,
+                  latitude: 1.0,
+                  longitude: 2.0,
+                  builder: Builder.last,
+                },
+                {
+                  name: 'project_b',
+                  title: 'Project B',
+                  verified: true,
+                  latitude: 10.0,
+                  longitude: 20.0,
+                  builder: Builder.first,
+                }
+               ])
+
 puts "Created #{Image.count} Images"
 puts "Created #{Blurb.count} Blurbs"
 puts "Created #{Datasource.count} Datasources"
 puts "Created #{Builder.count} Builders"
+puts "Created #{Project.count} Projects"
