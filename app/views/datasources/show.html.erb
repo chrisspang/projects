@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @datasource.name %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @datasource.title %>
+</p>
+
+<%= link_to 'Edit', edit_datasource_path(@datasource) %> |
+<%= link_to 'Back', datasources_path %>
