@@ -1,6 +1,7 @@
 class Project < ActiveRecord::Base
   validates :name, :title, presence: true, length: { minimum: 2, maximum: 20 }
-  validates :latitude, :longitude, presence: true
+  validates :latitude, :longitude, presence: true, numericality: { only_integer: false }
+
   validates_uniqueness_of :name, :title
 
   has_many :blurb, dependent: :destroy
@@ -10,5 +11,5 @@ class Project < ActiveRecord::Base
   scope :search, ->(keyword){ where('title LIKE ?', "%#{keyword.downcase}%") if keyword.present? }
 
   scope :for_builder, ->(builder_id){ where('builder_id = ?', builder_id) if (builder_id) }
-  
+
 end
