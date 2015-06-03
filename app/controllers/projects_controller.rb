@@ -4,12 +4,20 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+#    @projects = Project.all
+    @projects = Project
+      .includes(:builder)
+      .search(params[:keyword])
+
+    # @books = Book.includes(:genres).
+    # search(params[:keyword]).filter(params[:filter])
+    # @genres = Genre.all
   end
 
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @blurbs = Blurb.for_project(@project.id)
   end
 
   # GET /projects/new

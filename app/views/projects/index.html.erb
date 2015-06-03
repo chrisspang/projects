@@ -2,6 +2,25 @@
 
 <h1>Listing Projects</h1>
 
+  <div class='row'>
+    <div class='col-sm-12'>
+      <p>
+        <form>
+          <legend>Search</legend>
+          <div class='col-xs-4'>
+            <input type='text' class='form-control' value='<%= params[:keyword] %>' name='keyword' placeholder='Keyword' >
+          </div>
+        </form>
+      </p>
+      <p class='pull-right'>
+        <a href='#' id='show-form' class='btn btn-primary'>New Book Form</a>
+      </p>
+    </div>
+  </div>
+
+  <hr>
+
+
 <table>
   <thead>
     <tr>

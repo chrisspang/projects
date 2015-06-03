@@ -5,4 +5,7 @@ class Project < ActiveRecord::Base
 
   has_many :blurb
   belongs_to :builder
+
+  scope :search, ->(keyword){ where('title LIKE ?', "%#{keyword.downcase}%") if keyword.present? }
+  
 end
