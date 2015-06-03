@@ -27,15 +27,17 @@
 
 <p>
   <strong>Builder:</strong>
-  <%= @project.builder %>
+  <% if @project.builder %>
+      <%= link_to @project.builder.title, builder_path(@project.builder) %>
+  <% end %>
 </p>
 
 <p>Blurbs</p>
 
 <% @blurbs.each do |b| %>
-<p>
-  <%= b.id %> = <%= b.description %>
-</p>
+    <p>
+        <%= link_to "#{b.description} (#{b.id})", blurb_path(b) %>
+    </p>
 <% end %>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |

@@ -42,7 +42,11 @@
         <td><%= project.verified %></td>
         <td><%= project.latitude %></td>
         <td><%= project.longitude %></td>
-        <td><%= project.builder %></td>
+        <td>
+            <% if project.builder %>
+                <%= link_to project.builder.title, builder_path(project.builder) %>
+            <% end %>
+        </td>
         <td><%= link_to 'Show', project %></td>
         <td><%= link_to 'Edit', edit_project_path(project) %></td>
         <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>

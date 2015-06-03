@@ -10,6 +10,7 @@ class BlurbsController < ApplicationController
   # GET /blurbs/1
   # GET /blurbs/1.json
   def show
+    @images = Image.for_blurb(@blurb.id)
   end
 
   # GET /blurbs/new

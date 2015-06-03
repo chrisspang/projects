@@ -2,13 +2,19 @@
 
 <p>
   <strong>Datasource:</strong>
-  <%= @blurb.datasource %>
+  <%= link_to @blurb.datasource.title, datasource_path(@blurb.datasource) %>
 </p>
 
 <p>
   <strong>Description:</strong>
   <%= @blurb.description %>
 </p>
+
+<% @images.each do |i| %>
+    <p>
+        <%= link_to "#{i.url} (#{i.id})", image_path(i) %>
+    </p>
+<% end %>
 
 <%= link_to 'Edit', edit_blurb_path(@blurb) %> |
 <%= link_to 'Back', blurbs_path %>

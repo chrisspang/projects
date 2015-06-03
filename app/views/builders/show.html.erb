@@ -10,5 +10,10 @@
   <%= @builder.title %>
 </p>
 
+<% @projects.each do |p| %>
+    <p>
+        <%= link_to "#{p.title} (#{p.id})", project_path(p) %>
+    </p>
+<% end %>
 <%= link_to 'Edit', edit_builder_path(@builder) %> |
 <%= link_to 'Back', builders_path %>

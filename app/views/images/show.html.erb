@@ -7,7 +7,7 @@
 
 <p>
   <strong>Blurb:</strong>
-  <%= @image.blurb %>
+  <%= link_to @image.blurb.id, blurb_path(@image.blurb) %>
 </p>
 
 <%= link_to 'Edit', edit_image_path(@image) %> |

@@ -63,8 +63,32 @@ Project.create([
                   verified: true,
                   latitude: 10.0,
                   longitude: 20.0,
+                  builder: Builder.all.at(1),
+                },
+                {
+                  name: 'project_c',
+                  title: 'Project C',
+                  verified: true,
+                  latitude: 10.0,
+                  longitude: 20.0,
+#                  builder: ...
+                },
+                {
+                  name: 'project_d',
+                  title: 'Project D',
+                  verified: true,
+                  latitude: 10.0,
+                  longitude: 20.0,
                   builder: Builder.first,
-                }
+                },
+                {
+                  name: 'project_e',
+                  title: 'Project E',
+                  verified: true,
+                  latitude: 10.0,
+                  longitude: 20.0,
+                  builder: Builder.first,
+                },
                ])
 
 puts "Projects created"
