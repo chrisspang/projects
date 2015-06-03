@@ -6,14 +6,20 @@
 </p>
 
 <p>
+  <strong>Project:</strong>
+  <%= link_to @blurb.project.title, project_path(@blurb.project) %>
+</p>
+
+<p>
   <strong>Description:</strong>
   <%= @blurb.description %>
 </p>
 
+<h3>Images</h3>
 <% @images.each do |i| %>
-    <p>
-        <%= link_to "#{i.url} (#{i.id})", image_path(i) %>
-    </p>
+  <p>
+    <%= link_to "#{i.url} (#{i.id})", image_path(i) %>
+  </p>
 <% end %>
 
 <%= link_to 'Edit', edit_blurb_path(@blurb) %> |

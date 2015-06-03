@@ -70,6 +70,6 @@ class BlurbsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def blurb_params
-      params.require(:blurb).permit(:datasource_id, :description)
+      params.require(:blurb).permit(:datasource_id, :description, :project_id)
     end
 end
