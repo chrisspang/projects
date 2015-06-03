@@ -1,6 +1,8 @@
 class BuildersController < ApplicationController
   before_action :set_builder, only: [:show, :edit, :update, :destroy]
 
+  autocomplete :builder, :title, :full => true
+  
   # GET /builders
   # GET /builders.json
   def index

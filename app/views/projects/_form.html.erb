@@ -34,6 +34,7 @@
   <div class="field">
     <%= f.label :builder_id %><br>
     <%= f.text_field :builder_id %>
+    <%= f.autocomplete_field :name, autocomplete_builder_title_builders_path %>
   </div>
   <div class="actions">
     <%= f.submit %>
