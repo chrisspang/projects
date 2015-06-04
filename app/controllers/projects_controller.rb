@@ -14,6 +14,11 @@ class ProjectsController < ApplicationController
     # @books = Book.includes(:genres).
     # search(params[:keyword]).filter(params[:filter])
     # @genres = Genre.all
+
+    @map_markers = Gmaps4rails.build_markers(@projects) do | project, marker |
+      marker.lat project.latitude
+      marker.lng project.longitude
+    end
   end
 
   # GET /projects/1

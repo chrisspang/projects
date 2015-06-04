@@ -53,3 +53,9 @@ end
 # https://github.com/twbs/bootstrap-sass
 gem 'bootstrap-sass', '~> 3.3.4'
 #gem 'autoprefixer-rails'
+
+# https://rubygems.org/gems/gmaps4rails
+gem 'gmaps4rails'
+
+# Required by gmaps4rails
+gem 'underscore-rails'
