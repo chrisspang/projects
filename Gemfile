@@ -49,3 +49,7 @@ group :development, :test do
   gem 'spring'
 end
 
+# http://www.rubydoc.info/gems/bootstrap-sass/3.3.4.1
+# https://github.com/twbs/bootstrap-sass
+gem 'bootstrap-sass', '~> 3.3.4'
+#gem 'autoprefixer-rails'
