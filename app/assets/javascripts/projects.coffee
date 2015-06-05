@@ -59,3 +59,8 @@ $ ->
 
     gmap_handler.getMap().setZoom(10)
     gmap_handler.getMap().panTo(point)
+
+# In show.html.erb we want to activate the first blurb in the nav
+$ ->
+  $(".nav-tab-bar:first").addClass('active')  
+  $(".tab-pane:first").addClass('active')

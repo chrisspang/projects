@@ -1,73 +1,71 @@
 <p id="notice"><%= notice %></p>
 
 <div class="container">
-  <%= button_to "Edit", edit_project_path, :class => "btn btn-primary", :method => :get %>
+
+  <div class="row">
+
+    <div class="col-md-5 well">
+      <h1><%= @project.title %></h1>
+      <ul class="list-unstyled">
+        <li><strong>Name:</strong> <%= @project.name %> </li>
+        <li><strong>Title:</strong> <%= @project.title %> </li>
+        <li><strong>Verified:</strong> <%= @project.verified %> </li>
+        <li><strong>Lat / Long:</strong> <%= @project.latitude %>, <%= @project.longitude %> </li>
+        <li><strong>Builder:</strong> <%= link_to @project.builder.title, builder_path(@project.builder) %> </li>
+        <li><strong>Created at:</strong> <%= @project.created_at %>
+        <li><strong>Updated at:</strong> <%= @project.updated_at %>          
+      </ul>
+
+    </div>
+
+    <div class="col-md-5">
+      <div id="map" style='width: 400px; height: 400px;'></div>
+    </div>
+    
+    <div class="col-md-2">
+      <ul class="list-inline pull-right text-center">
+        <li><%= button_to "Edit", edit_project_path, :class => "btn btn-primary", :method => :get %></li>
+        <li><%= button_to "Destroy", project_path, :class => "btn btn-danger", :method => :delete,
+            data: { confirm: 'Are you sure?' } %></li>
+      </ul>
+      <ul class="list-inline pull-right text-center">      
+        <li><%= button_to "Verify", edit_project_path, :class => "btn btn-success", :method => :get %></li>
+        
+      </ul>
+    </div>
+    
+  </div>
 </div>
 
-<div style='width: 800px;'>
-  <div id="map" style='width: 800px; height: 200px;'></div>
-</div>
+<div class="container col-md-10 col-md-offset-1">
 
-<p>
-  <strong>Name:</strong>
-  <%= @project.name %>
-</p>
-     
-
-<p>
-  <strong>Title:</strong>
-  <%= @project.title %>
-</p>
-
-<p>
-  <strong>Verified:</strong>
-  <%= @project.verified %>
-</p>
-
-<p>
-  <strong>Latitude:</strong>
-  <%= @project.latitude %>
-</p>
-
-<p>
-  <strong>Longitude:</strong>
-  <%= @project.longitude %>
-</p>
-
-<p>
-  <strong>Builder:</strong>
-  <% if @project.builder %>
-      <%= link_to @project.builder.title, builder_path(@project.builder) %>
-  <% end %>
-</p>
-
-<h2>Blurbs</h2>
-
-<div class="container" border="1">
   <ul class="nav nav-tabs">
     <% @blurbs.each do |b| %>
-      <li>
+      <li class="nav-tab-bar">
         <a data-toggle="tab" href="#blurb_<%= b.id %>"><%= b.datasource.title %></a>
       </li>
-    <% end %>
+    <% end %>      
   </ul>
 
   <div class="tab-content">
     <% @blurbs.each do |b| %>
-      <div border="1" id="blurb_<%= b.id%>" class="tab-pane fade in">
-        <%= button_to 'Destroy', blurb_path(b), :class => 'btn btn-danger btn-sm', :method => :delete, data: { confirm: 'Are you sure?' } %>
-        <p>
+      <div id="blurb_<%= b.id %>" class="tab-pane fade in">
+        <div class="lead well col-md-10">
           <%= b.description %>
-        </p>
+        </div>
+        <div class="col-md-2 pull-right text-center">
+        <%= button_to 'Destroy', blurb_path(b), :class => 'btn btn-danger btn-sm', :method => :delete, data: { confirm: 'Are you sure?' } %>
+          
+        </div>
 
         <% b.images.each do |i| %>
-          <div class="col-md-4">
-            <figcaption align="center">
-              <%= i.url %>
-              <%= button_to 'Destroy', image_path(b), :class => 'btn btn-danger btn-xs', :method => :delete, data: { confirm: 'Are you sure?' } %>
-            </figcaption>              
+          <div class="container col-md-3">
             <a href="<%= i.url %>" class="thumbnail">
               <%= image_tag(i.url, alt: i.url, size: "200x150") %>
+              <figcaption align="center">
+                <%= i.url %>
+                <%= button_to 'Destroy', image_path(i.id), :class => 'btn btn-danger btn-xs', :method => :delete, data: { confirm: 'Are you sure?' } %>
+              </figcaption>              
             </a>
           </div>
         <% end %>
@@ -75,10 +73,6 @@
     <% end  %>
   </div>
 </div>
-
-<hr>
-
-<%= link_to 'Edit', edit_project_path(@project) %> |
 
 <%= javascript_tag defer: 'defer' do -%>
   map_markers = [{

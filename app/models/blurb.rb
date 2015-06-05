@@ -6,7 +6,7 @@ class Blurb < ActiveRecord::Base
 
   ## Ensure we refer to a valid project
   validates :project, presence: true
-  
+
   scope :for_project, ->(project_id){ where('project_id = ?', project_id) if (project_id) }
 
   has_many :images, dependent: :destroy
