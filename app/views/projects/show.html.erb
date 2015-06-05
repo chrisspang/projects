@@ -49,27 +49,33 @@
 
   <div class="tab-content">
     <% @blurbs.each do |b| %>
-      <div id="blurb_<%= b.id %>" class="tab-pane fade in">
-        <div class="lead well col-md-10">
-          <%= b.description %>
-        </div>
-        <div class="col-md-2 pull-right text-center">
-        <%= button_to 'Destroy', blurb_path(b), :class => 'btn btn-danger btn-sm', :method => :delete, data: { confirm: 'Are you sure?' } %>
-          
-        </div>
-
-        <% b.images.each do |i| %>
-          <div class="container col-md-3">
-            <a href="<%= i.url %>" class="thumbnail">
-              <%= image_tag(i.url, alt: i.url, size: "200x150") %>
-              <figcaption align="center">
-                <%= i.url %>
-                <%= button_to 'Destroy', image_path(i.id), :class => 'btn btn-danger btn-xs', :method => :delete, data: { confirm: 'Are you sure?' } %>
-              </figcaption>              
-            </a>
+        <div id="blurb_<%= b.id %>" class="tab-pane fade in row">
+          <div class="row">
+            <div class="lead well col-md-9">
+              <%= b.description %>
+            </div>
+            <div class="col-md-3">
+              <ul class="list-inline pull-right text-center">
+                <li><%= button_to "Edit", edit_blurb_path(b), :class => "btn btn-primary", :method => :get %></li>
+                <li><%= button_to 'Destroy', blurb_path(b), :class => 'btn btn-danger btn-sm', :method => :delete, data: { confirm: 'Are you sure?' } %></li>
+              </ul>
+            </div>
           </div>
-        <% end %>
-      </div>
+
+          <div class="row">
+            <% b.images.each do |i| %>
+              <div class="container col-md-3">
+                <a href="<%= i.url %>" class="thumbnail">
+                  <%= image_tag(i.url, alt: i.url, size: "200x150") %>
+                  <figcaption align="center">
+                    <%= i.url %>
+                    <%= button_to 'Destroy', image_path(i), :class => 'btn btn-danger btn-xs', :method => :delete, data: { confirm: 'Are you sure?' } %>
+                  </figcaption>              
+                </a>
+              </div>
+            <% end %>
+          </div>
+        </div>
     <% end  %>
   </div>
 </div>

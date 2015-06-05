@@ -6,8 +6,6 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @project %>
-
 <%= javascript_tag defer: 'defer' do -%>
   map_markers = [{
   "lat": <%= @project.latitude %>,
