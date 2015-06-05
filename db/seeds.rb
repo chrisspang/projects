@@ -128,19 +128,19 @@ puts "Blurbs created"
 
 Image.create([
               {
-                url: 'http://a.jpg',
+                url: 'http://placehold.it/400x300?text=aaaa',
                 blurb: Blurb.first
               },
               {
-                url: 'http://b.jpg',
+                url: 'http://placehold.it/400x300?text=bbbb',
                 blurb: Blurb.first
               },
               {
-                url: 'http://c.jpg',
+                url: 'http://placehold.it/400x300?text=ccc',
                 blurb: Blurb.last
               },
               {
-                url: 'http://d.jpg',
+                url: 'http://placehold.it/400x300?text=ddd',
                 blurb: Blurb.last
               }
              ])
