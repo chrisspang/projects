@@ -11,11 +11,14 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
+//=
 //= require jquery_ujs
-//= require turbolinks
 //= require jquery-ui/autocomplete
 //= require autocomplete-rails
 //= require bootstrap-sprockets
 //= require underscore
 //= require gmaps/google
+//=
+//= require turbolinks
 //= require_tree .

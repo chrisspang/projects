@@ -59,3 +59,6 @@ gem 'gmaps4rails'
 
 # Required by gmaps4rails
 gem 'underscore-rails'
+
+# https://github.com/kossnocorp/jquery.turbolinks
+gem 'jquery-turbolinks'
