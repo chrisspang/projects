@@ -1,13 +1,18 @@
 <p id="notice"><%= notice %></p>
 
+<div class="container">
+  <%= button_to "Edit", edit_project_path, :class => "btn btn-primary", :method => :get %>
+</div>
+
 <div style='width: 800px;'>
-  <div id="map" style='width: 800px; height: 400px;'></div>
+  <div id="map" style='width: 800px; height: 200px;'></div>
 </div>
 
 <p>
   <strong>Name:</strong>
   <%= @project.name %>
 </p>
+     
 
 <p>
   <strong>Title:</strong>
@@ -36,16 +41,44 @@
   <% end %>
 </p>
 
-<p>Blurbs</p>
+<h2>Blurbs</h2>
 
-<% @blurbs.each do |b| %>
-    <p>
-        <%= link_to "#{b.description} (#{b.id})", blurb_path(b) %>
-    </p>
-<% end %>
+<div class="container" border="1">
+  <ul class="nav nav-tabs">
+    <% @blurbs.each do |b| %>
+      <li>
+        <a data-toggle="tab" href="#blurb_<%= b.id %>"><%= b.datasource.title %></a>
+      </li>
+    <% end %>
+  </ul>
+
+  <div class="tab-content">
+    <% @blurbs.each do |b| %>
+      <div border="1" id="blurb_<%= b.id%>" class="tab-pane fade in">
+        <%= button_to 'Destroy', blurb_path(b), :class => 'btn btn-danger btn-sm', :method => :delete, data: { confirm: 'Are you sure?' } %>
+        <p>
+          <%= b.description %>
+        </p>
+
+        <% b.images.each do |i| %>
+          <div class="col-md-4">
+            <figcaption align="center">
+              <%= i.url %>
+              <%= button_to 'Destroy', image_path(b), :class => 'btn btn-danger btn-xs', :method => :delete, data: { confirm: 'Are you sure?' } %>
+            </figcaption>              
+            <a href="<%= i.url %>" class="thumbnail">
+              <%= image_tag(i.url, alt: i.url, size: "200x150") %>
+            </a>
+          </div>
+        <% end %>
+      </div>
+    <% end  %>
+  </div>
+</div>
+
+<hr>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
 
 <%= javascript_tag defer: 'defer' do -%>
   map_markers = [{
