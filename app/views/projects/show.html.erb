@@ -51,22 +51,16 @@
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
 
-<script type="text/javascript">
-handler = Gmaps.build('Google');
-handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-  markers = handler.addMarkers([
-    {
-      "lat": <%= @project.latitude %>,
-      "lng": <%= @project.longitude %>,
-      "picture": {
-        "url": "http://s.uk.nestoria.nestimg.com/i/realestate/all/all/favicon-32x32.png",
-        "width":  32,
-        "height": 32
-      },
-      "infowindow": "hello!"
-    }
-  ]);
-  handler.bounds.extendWith(markers);
-  handler.fitMapToBounds();
-});
-</script>
+<%= javascript_tag defer: 'defer' do -%>
+  map_markers = [{
+  "lat": <%= @project.latitude %>,
+  "lng": <%= @project.longitude %>,
+  "picture": {
+  "url": "http://s.uk.nestoria.nestimg.com/i/realestate/all/all/favicon-32x32.png",
+  "width":  32,
+  "height": 32
+  },
+  "infowindow": "<%= @project.title %>"
+  }];
+  map_add_marker = 0;
+<% end -%>

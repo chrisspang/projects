@@ -34,6 +34,7 @@
       <th>Latitude</th>
       <th>Longitude</th>
       <th>Builder</th>
+      <th>Zoom To</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -54,6 +55,8 @@
         <td><%= link_to 'Show', project %></td>
         <td><%= link_to 'Edit', edit_project_path(project) %></td>
         <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><a href="#" data-map-lat="<%= project.latitude %>"
+               data-map-long="<%= project.longitude %>">Zoom to</a></td>
       </tr>
     <% end %>
   </tbody>
@@ -63,12 +66,7 @@
 
 <%= link_to 'New Project', new_project_path %>
 
-
-<script type="text/javascript">
- handler = Gmaps.build('Google');
- handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-     markers = handler.addMarkers( <%=raw @map_markers.to_json %>);
-     handler.bounds.extendWith(markers);
-     handler.fitMapToBounds();
- });
-</script>
+<%= javascript_tag defer: 'defer' do -%>
+ map_markers = <%=raw @map_markers.to_json %>;
+ map_add_marker = 0;
+<% end -%>
