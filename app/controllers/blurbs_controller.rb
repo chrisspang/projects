@@ -57,7 +57,7 @@ class BlurbsController < ApplicationController
   def destroy
     @blurb.destroy
     respond_to do |format|
-      format.html { redirect_to blurbs_url, notice: 'Blurb was successfully destroyed.' }
+      format.html { redirect_to project_url(@blurb.project), notice: 'Blurb was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
