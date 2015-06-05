@@ -8,11 +8,12 @@ class Project < ActiveRecord::Base
   validates_uniqueness_of :name, :title
 
   has_many :blurb, dependent: :destroy
-  
+
   belongs_to :builder
 
   scope :search, ->(keyword){ where('title LIKE ?', "%#{keyword.downcase}%") if keyword.present? }
 
-  scope :for_builder, ->(builder_id){ where('builder_id = ?', builder_id) if (builder_id) }
+  scope :unverified, ->(unverified) { where(verified: false) if unverified.present? }
 
+  scope :for_builder, ->(builder_id){ where('builder_id = ?', builder_id) if (builder_id) }
 end

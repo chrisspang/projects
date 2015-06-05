@@ -6,10 +6,10 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-#    @projects = Project.all
     @projects = Project
       .includes(:builder)
       .search(params[:keyword])
+      .unverified(params[:unverified])
 
     # @books = Book.includes(:genres).
     # search(params[:keyword]).filter(params[:filter])
