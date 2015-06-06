@@ -1,8 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
-  autocomplete :project, :name, :full => true
-  
   # GET /projects
   # GET /projects.json
   def index
@@ -10,6 +8,10 @@ class ProjectsController < ApplicationController
       .includes(:builder)
       .search(params[:keyword])
       .unverified(params[:unverified])
+
+    if @projects.count == 1
+      redirect_to @projects.first, notice: "You were redirected"
+    end
 
     # @books = Book.includes(:genres).
     # search(params[:keyword]).filter(params[:filter])
@@ -76,6 +78,17 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  # GET /projects/typeahead.json
+  def typeahead
+    searchterm = params[:a]
+    project_names =  Project.all.collect(&:title).grep(/#{searchterm}/i).map { |title| { value: title } }
+
+
+    respond_to do |format|
+      format.json { render json: project_names }
     end
   end
 

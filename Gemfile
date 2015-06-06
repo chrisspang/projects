@@ -19,8 +19,9 @@ gem 'jquery-rails'
 
 gem 'jquery-ui-rails'
 
-## See https://github.com/peterwillcn/rails4-autocomplete
-gem 'rails4-autocomplete'
+# Will use twitter typeahead instead
+### See https://github.com/peterwillcn/rails4-autocomplete
+##gem 'rails4-autocomplete'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'

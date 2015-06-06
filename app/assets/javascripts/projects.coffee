@@ -69,3 +69,38 @@ $ ->
 # 
 #$(document).ready(ready)
 #$(document).on('page:load', ready)
+
+# In index.html.erb we want to allow autocomplete
+
+buildSearch = (tag) ->
+  remote_url = tag.data('remote')
+  console.log(remote_url)
+  
+  projects = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+#    prefetch: remote_url, # '../data/films/post_1960.json',
+    remote: {
+      url: "#{remote_url}?a=%QUERY",       # '../data/films/queries/%QUERY.json',
+      wildcard: '%QUERY'
+    }
+  })
+  
+#  $('#bloodhound .typeahead').typeahead({
+  tag.typeahead({
+    hint: true,
+    highlight: true,
+    minLength: 1
+  },
+  {
+    name: 'projects',
+    display: 'value',
+    source: projects,
+    async: true,
+    limit: 10,
+  })
+
+$ ->
+  tag = $('#bloodhound .typeahead')
+  if tag?
+    buildSearch(tag)

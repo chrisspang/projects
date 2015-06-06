@@ -8,11 +8,12 @@ Rails.application.routes.draw do
   root to: 'projects#index'
 
   resources :projects do
-    get :autocomplete_project_name, :on => :collection
+    get :typeahead, :on => :collection
+#    get :autocomplete_project_name, :on => :collection
   end
   
   resources :builders do
-    get :autocomplete_builder_title, :on => :collection
+#    get :autocomplete_builder_title, :on => :collection
   end
   
   # The priority is based upon order of creation: first created -> highest priority.
