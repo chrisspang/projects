@@ -40,7 +40,7 @@ $ ->
 
   # If map_add_marker==1 then listen for single clicks and
   # place a map marker under them. Also update our form lat/long.
-  if map_add_marker
+  if map_add_marker? and map_add_marker == 1
     google.maps.event.addListener gmap_handler.getMap(), 'click', (event) ->
       placeMarker(event.latLng)
 
@@ -64,3 +64,8 @@ $ ->
 $ ->
   $(".nav-tab-bar:first").addClass('active')  
   $(".tab-pane:first").addClass('active')
+
+# http://stackoverflow.com/questions/18770517/rails-4-how-to-use-document-ready-with-turbo-links
+# 
+#$(document).ready(ready)
+#$(document).on('page:load', ready)
