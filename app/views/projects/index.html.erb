@@ -1,62 +1,67 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Projects</h1>
+<h1>Projects</h1>
 
-<div style='width: 800px;'>
-  <div id="map" style='width: 800px; height: 400px;'></div>
+<div class="row">
+  <div style='width: 800px;' class="col-md-8 col-md-offset-2">
+    <div id="map" style='width: 800px; height: 400px;'></div>
+  </div>
 </div>
 
-  <div class='row'>
-    <div class='col-sm-12'>
-      <p>
-        <form>
-          <legend>Search</legend>
-          <div class='col-xs-4'>
-            <input type='text' class='form-control' value='<%= params[:keyword] %>' name='keyword' placeholder='Keyword' >
-          </div>
-        </form>
-      </p>
-    </div>
+<br>
+
+<div class='row'>
+  <div class='col-sm-8 col-sm-offset-2'>
+    <form>
+      <div class="form-inline">
+        <div class="form-group">
+          <strong>Search</strong>
+          <input type='text' class='form-control' value='<%= params[:keyword] %>' name='keyword' placeholder='Keyword' >
+        </div>
+      </div>
+    </form>
   </div>
+</div>
 
-  <hr>
+<br>
 
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2">
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Title</th>
+          <th>Verified</th>
+          <th>Latitude</th>
+          <th>Longitude</th>
+          <th>Builder</th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
 
-<table class="table table-condensed">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Title</th>
-      <th>Verified</th>
-      <th>Latitude</th>
-      <th>Longitude</th>
-      <th>Builder</th>
-      <th colspan="4"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @projects.each do |project| %>
-      <tr>
-        <td><%= project.name %></td>
-        <td><%= project.title %></td>
-        <td><%= project.verified %></td>
-        <td><%= project.latitude %></td>
-        <td><%= project.longitude %></td>
-        <td>
-            <% if project.builder %>
+      <tbody>
+        <% @projects.each do |project| %>
+          <tr>
+            <td><%= project.name %></td>
+            <td><%= link_to project.title, project %></td>
+            <td><%= project.verified %></td>
+            <td><%= project.latitude %></td>
+            <td><%= project.longitude %></td>
+            <td>
+              <% if project.builder %>
                 <%= link_to project.builder.title, builder_path(project.builder) %>
-            <% end %>
-        </td>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><a href="#" data-map-lat="<%= project.latitude %>"
-               data-map-long="<%= project.longitude %>">Zoom to</a></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+              <% end %>
+            </td>
+            <td><%= link_to 'Edit', edit_project_path(project) %></td>
+            <td><a href="#" data-map-lat="<%= project.latitude %>"
+                   data-map-long="<%= project.longitude %>">Zoom to</a></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <%= javascript_tag defer: 'defer' do -%>
  map_markers = <%=raw @map_markers.to_json %>;
