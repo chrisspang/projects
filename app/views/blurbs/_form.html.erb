@@ -26,19 +26,13 @@
     <%= f.text_area :description %>
   </div>
 
-  <div class="field">
-    <% @blurb.images.each do |i| %>
-      <p><%= i.url %></p>
-    <% end %>
-  </div>
-  
-  <div class="field">
+  <%= f.fields_for :images do |i| %>
+    <div class="field">
+      <%= i.label :image %>
+      <%= i.text_field :url %>
+    </div>
+  <% end %>
 
-    <%= f.fields_for :images do |builder| %>
-      <p><%= builder.text_area :url %></p>
-    <% end %>
-    
-  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

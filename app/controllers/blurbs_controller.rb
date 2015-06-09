@@ -16,7 +16,7 @@ class BlurbsController < ApplicationController
   # GET /blurbs/new
   def new
     @blurb = Blurb.new
-    @blurb.images.build
+    3.times { @blurb.images.build }
   end
 
   # GET /blurbs/1/edit
@@ -71,6 +71,6 @@ class BlurbsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def blurb_params
-      params.require(:blurb).permit(:datasource_id, :description, :project_id)
+      params.require(:blurb).permit(:datasource_id, :description, :project_id, images_attributes: [:id, :url])
     end
 end

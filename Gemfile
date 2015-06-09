@@ -48,6 +48,7 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
 end
 
 # http://www.rubydoc.info/gems/bootstrap-sass/3.3.4.1
@@ -63,3 +64,9 @@ gem 'underscore-rails'
 
 # https://github.com/kossnocorp/jquery.turbolinks
 gem 'jquery-turbolinks'
+
+group :development do
+  gem "annotate"
+  gem "better_errors"
+  gem "binding_of_caller"
+end
