@@ -22,5 +22,8 @@ module Beta
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    ## The rails server doesn't seem to need this, but the console does
+    config.autoload_paths += %W["#{config.root}/lib/validators/"]
   end
 end
