@@ -1,5 +1,5 @@
 class Blurb < ActiveRecord::Base
-  validates :description, presence: true, length: { minimum: 2, maximum: 200 }
+  validates :description, presence: true, length: { minimum: 2, maximum: 2000 }
 
   ## Ensure we refer to a valid datasource_id
   validates :datasource, presence: true
