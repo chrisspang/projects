@@ -1,4 +1,4 @@
- <div id="blurb_<%= blurb.id %>" class="tab-pane fade in row">
+ <div id="blurb_<%= blurb.id %>" class="tab-pane fade in row <%= "active" if blurb.id == @blurb_panel_id %>">
   <div class="row">
     <div class="lead well col-md-9">
       <%= blurb.description %>
@@ -15,7 +15,7 @@
     <% blurb.images.each do |i| %>
       <div class="container col-md-3">
         <a href="<%= i.url %>" class="thumbnail">
-          <%= image_tag(i.url, alt: i.url, size: "200x150") %>
+          <%= image_tag(i.url, alt: i.url) %>
           <figcaption align="center">
             <%= i.url %>
             <%= button_to 'Destroy', image_path(i), :class => 'btn btn-danger btn-xs', :method => :delete, data: { confirm: 'Are you sure?' } %>

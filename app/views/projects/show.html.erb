@@ -40,7 +40,7 @@
 
   <ul class="nav nav-tabs">
     <% @blurbs.each do |b| %>
-      <li class="nav-tab-bar">
+      <li class="nav-tab-bar <%= "active" if b.id == @blurb_panel_id %>">
         <a data-toggle="tab" href="#blurb_<%= b.id %>"><%= b.datasource.title %></a>
       </li>
     <% end %>      

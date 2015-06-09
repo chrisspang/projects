@@ -16,11 +16,14 @@ class BlurbsController < ApplicationController
   # GET /blurbs/new
   def new
     @blurb = Blurb.new
-    3.times { @blurb.images.build }
+    4.times { @blurb.images.build }
   end
 
   # GET /blurbs/1/edit
   def edit
+    (@blurb.images.count...4).each do |c|
+      @blurb.images.build
+    end
   end
 
   # POST /blurbs
@@ -30,7 +33,7 @@ class BlurbsController < ApplicationController
 
     respond_to do |format|
       if @blurb.save
-        format.html { redirect_to @blurb, notice: 'Blurb was successfully created.' }
+        format.html { redirect_to project_url(@blurb.project, :blurb_id => @blurb.id), notice: 'Blurb was successfully created.' }
         format.json { render :show, status: :created, location: @blurb }
       else
         format.html { render :new }
@@ -44,7 +47,7 @@ class BlurbsController < ApplicationController
   def update
     respond_to do |format|
       if @blurb.update(blurb_params)
-        format.html { redirect_to @blurb, notice: 'Blurb was successfully updated.' }
+        format.html { redirect_to project_url(@blurb.project, :blurb_id => 13), notice: 'Blurb was successfully updated.' }
         format.json { render :show, status: :ok, location: @blurb }
       else
         format.html { render :edit }

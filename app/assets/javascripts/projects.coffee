@@ -61,9 +61,9 @@ $ ->
     gmap_handler.getMap().panTo(point)
 
 # In show.html.erb we want to activate the first blurb in the nav
-$ ->
-  $(".nav-tab-bar:first").addClass('active')  
-  $(".tab-pane:first").addClass('active')
+#$ ->
+#  $(".nav-tab-bar:first").addClass('active')  
+#  $(".tab-pane:first").addClass('active')
 
 # http://stackoverflow.com/questions/18770517/rails-4-how-to-use-document-ready-with-turbo-links
 # 

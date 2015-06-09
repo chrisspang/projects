@@ -33,7 +33,8 @@ class ProjectsController < ApplicationController
     ## Create an empty Blurb for the 'add blurb' form
     @blurb = Blurb.new(:project => @project)
     3.times {  @blurb.images.build }
-    logger.warn @blurb.images.inspect
+
+    @blurb_panel_id = params[:blurb_id].to_i
   end
 
   # GET /projects/new
