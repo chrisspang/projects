@@ -30,6 +30,10 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @blurbs = Blurb.for_project(@project.id)
+    ## Create an empty Blurb for the 'add blurb' form
+    @blurb = Blurb.new(:project => @project)
+    3.times {  @blurb.images.build }
+    logger.warn @blurb.images.inspect
   end
 
   # GET /projects/new

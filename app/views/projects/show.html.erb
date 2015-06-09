@@ -30,7 +30,6 @@
       </ul>
       <ul class="list-inline pull-right text-center">      
         <li><%= button_to "Verify", edit_project_path, :class => "btn btn-success", :method => :get %></li>
-        
       </ul>
     </div>
     
@@ -45,12 +44,59 @@
         <a data-toggle="tab" href="#blurb_<%= b.id %>"><%= b.datasource.title %></a>
       </li>
     <% end %>      
+    <li class="nav-tab-bar">
+      <a data-toggle="tab" href="#blurb_new">Add Blurb</a>
+    </li>
   </ul>
 
   <div class="tab-content">
 
     <%= render :partial => 'blurb_pane', :collection => @blurbs, :as => :blurb %>
 
+    <div id="blurb_new" class="tab-pane fade in row">
+      <%= form_for(@blurb) do |f| %>
+        <% if @blurb.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@blurb.errors.count, "error") %> prohibited this blurb from being saved:</h2>
+            
+            <ul>
+              <% @blurb.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        
+        <%= f.hidden_field(:project_id) %>
+        
+        <div class="field">
+          <%= f.label :datasource_id %><br>
+          <%= f.collection_select(:datasource_id, Datasource.all, :id, :title) %>
+        </div>
+        
+        <div class="field">
+          <%= f.label :description %><br>
+          <%= f.text_area :description, size: "100x20" %>
+        </div>
+
+        <div class="field">
+          <%= f.fields_for :image do |builder| %>
+            <p>poo</p>
+            <p>
+              <%= builder.label :id %> - <%= builder.label :url, "URL" %>
+            </p>
+          <% end %>
+        </div>
+        
+        <div class="actions">
+          <%= f.submit %>
+        </div>
+      <% end %>
+      
+      
+    </div>
+    
+    
   </div>
 </div>
 

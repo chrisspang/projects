@@ -9,8 +9,14 @@ class Blurb < ActiveRecord::Base
 
   scope :for_project, ->(project_id){ where('project_id = ?', project_id) if (project_id) }
 
-  has_many :images, dependent: :destroy
+  has_many :images, :dependent => :destroy
+#  accepts_nested_attributes_for :images, :reject_if => lambda { |a| a[:url].blank? }
+  accepts_nested_attributes_for :images
 
   belongs_to :project
   belongs_to :datasource
+
+  def images_attributes=(attributes)
+
+  end
 end

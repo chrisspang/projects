@@ -16,6 +16,7 @@ class BlurbsController < ApplicationController
   # GET /blurbs/new
   def new
     @blurb = Blurb.new
+    @blurb.images.build
   end
 
   # GET /blurbs/1/edit
