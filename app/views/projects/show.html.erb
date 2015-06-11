@@ -22,7 +22,7 @@
       <div id="map" style='width: 400px; height: 400px;'></div>
     </div>
     
-    <div class="col-md-2">
+    <div class="col-md-2" id="edit_buttons">
       <ul class="list-inline pull-right text-center">
         <li><%= button_to "Edit", edit_project_path, :class => "btn btn-primary", :method => :get %></li>
         <li><%= button_to "Destroy", project_path, :class => "btn btn-danger", :method => :delete,
