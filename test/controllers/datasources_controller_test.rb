@@ -18,7 +18,7 @@ class DatasourcesControllerTest < ActionController::TestCase
 
   test "should create datasource" do
     assert_difference('Datasource.count') do
-      post :create, datasource: { name: @datasource.name, title: @datasource.title }
+      post :create, datasource: { name: 'unique name', title: 'Unique Title' }
     end
 
     assert_redirected_to datasource_path(assigns(:datasource))
@@ -32,11 +32,6 @@ class DatasourcesControllerTest < ActionController::TestCase
   test "should get edit" do
     get :edit, id: @datasource
     assert_response :success
-  end
-
-  test "should update datasource" do
-    patch :update, id: @datasource, datasource: { name: @datasource.name, title: @datasource.title }
-    assert_redirected_to datasource_path(assigns(:datasource))
   end
 
   test "should destroy datasource" do

@@ -18,10 +18,13 @@ class BlurbsControllerTest < ActionController::TestCase
 
   test "should create blurb" do
     assert_difference('Blurb.count') do
-      post :create, blurb: { datasource_id: @blurb.datasource_id, description: @blurb.description }
+      post :create, blurb: { datasource_id: 2, project_id: 1, description: 'Unique description' }
     end
 
-    assert_redirected_to blurb_path(assigns(:blurb))
+    assert_response :redirect
+    assert_match project_path(@blurb.project), @response.redirect_url
+#    assert_redirected_to blurb_path(assigns(:blurb))
+#    assert_redirected_to project_path(@blurb.project)
   end
 
   test "should show blurb" do
@@ -36,7 +39,8 @@ class BlurbsControllerTest < ActionController::TestCase
 
   test "should update blurb" do
     patch :update, id: @blurb, blurb: { datasource_id: @blurb.datasource_id, description: @blurb.description }
-    assert_redirected_to blurb_path(assigns(:blurb))
+#    assert_redirected_to project_path(assigns(:blurb))
+    assert_redirected_to project_path(@blurb.project, :blurb_id => @blurb.id)    
   end
 
   test "should destroy blurb" do
@@ -44,6 +48,6 @@ class BlurbsControllerTest < ActionController::TestCase
       delete :destroy, id: @blurb
     end
 
-    assert_redirected_to blurbs_path
+    assert_redirected_to project_path(@blurb.project)
   end
 end

@@ -1,9 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  datasource_id: 
+  id: 1
+  datasource_id: 1
   description: MyText
+  project_id: 1
 
 two:
-  datasource_id: 
+  id: 2
+  datasource_id: 2
   description: MyText
+  project_id: 2

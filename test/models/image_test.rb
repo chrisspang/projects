@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class ImageTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  should validate_presence_of(:url)
+  
+  should belong_to(:blurb)
 end

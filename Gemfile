@@ -70,3 +70,14 @@ group :development do
   gem "better_errors"
   gem "binding_of_caller"
 end
+
+group :test do
+  gem "shoulda"
+  gem "capybara"
+#  gem "mocha"
+end
+
+#group :development, :test do
+#  gem "rspec-rails"
+#  gem "factory_girl_rails"
+#end

@@ -44,6 +44,6 @@ class ImagesControllerTest < ActionController::TestCase
       delete :destroy, id: @image
     end
 
-    assert_redirected_to images_path
+    assert_redirected_to @image.blurb.project
   end
 end
