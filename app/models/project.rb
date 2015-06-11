@@ -7,7 +7,7 @@ class Project < ActiveRecord::Base
 
   validates_uniqueness_of :name, :title
 
-  has_many :blurb, dependent: :destroy
+  has_many :blurbs, dependent: :destroy
 
   belongs_to :builder
 
