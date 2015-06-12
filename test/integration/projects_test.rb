@@ -2,8 +2,7 @@ require 'test_helper'
 
 class ProjectsTest < ActionDispatch::IntegrationTest
 
-
-  test "test show project" do
+  test "show project" do
     project = projects(:one)
     get project_url(project)
 
@@ -13,19 +12,24 @@ class ProjectsTest < ActionDispatch::IntegrationTest
 
   test "capybara test" do
 
-    project = projects(:one)
+    1.times { FactoryGirl.create(:project) }
+#    project = projects(:one)
+
+    project = FactoryGirl.create(:project)
+    puts project.inspect
     
     visit projects_path
 
-    puts "Page is " + current_path
-
+#    puts "Page is " + current_path
 #    save_and_open_page
-    
+
     within "div#search_form" do
-      fill_in 'Search', with: 'fred'
+      fill_in 'Search', with: 'project'
       click_on 'search_submit'
 
-      assert_equal root_path, projects_path
+#      puts "Project path: #{projects_path} root: #{root_path}"
+      
+      assert_equal projects_path, current_path
     end
   end
 
@@ -35,8 +39,7 @@ class ProjectsTest < ActionDispatch::IntegrationTest
     
     visit project_path(project)
 
-    puts "Page is " + current_path
-
+#    puts "Page is " + current_path
 #    save_and_open_page
     
     within "div#edit_buttons" do
