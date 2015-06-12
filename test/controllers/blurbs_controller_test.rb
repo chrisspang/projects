@@ -2,12 +2,12 @@ require 'test_helper'
 
 class BlurbsControllerTest < ActionController::TestCase
   setup do
-    @blurb = blurbs(:one)
+    @blurb = FactoryGirl.create(:blurb)
   end
 
   test "should get index" do
     get :index
-    assert_response :success
+    assert_response :success, @response.body
     assert_not_nil assigns(:blurbs)
   end
 
@@ -17,14 +17,14 @@ class BlurbsControllerTest < ActionController::TestCase
   end
 
   test "should create blurb" do
-    assert_difference('Blurb.count') do
-      post :create, blurb: { datasource_id: 2, project_id: 1, description: 'Unique description' }
+    p = FactoryGirl.create(:project)
+    assert_difference('Blurb.count', 1) do
+      b = FactoryGirl.attributes_for(:blurb, :project_id => p.id, :datasource_id => Datasource.first.id)
+      post :create, blurb: b
     end
 
     assert_response :redirect
-    assert_match project_path(@blurb.project), @response.redirect_url
-#    assert_redirected_to blurb_path(assigns(:blurb))
-#    assert_redirected_to project_path(@blurb.project)
+    assert_match project_path(p), @response.redirect_url
   end
 
   test "should show blurb" do

@@ -2,7 +2,7 @@ require 'test_helper'
 
 class DatasourcesControllerTest < ActionController::TestCase
   setup do
-    @datasource = datasources(:one)
+    @datasource = FactoryGirl.create(:datasource)
   end
 
   test "should get index" do

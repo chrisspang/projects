@@ -9,7 +9,8 @@ class ProjectsController < ApplicationController
       .search(params[:keyword])
       .unverified(params[:unverified])
 
-    if @projects.count == 1
+    ## Redirect to a project if this was a search with only 1 result
+    if @projects.count == 1 and params[:keyword].present?
       redirect_to @projects.first, notice: "You were redirected"
     end
 

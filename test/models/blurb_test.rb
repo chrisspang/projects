@@ -9,15 +9,15 @@ class BlurbTest < ActiveSupport::TestCase
 
   should have_many(:images)
   
-  test "valid fixture" do
-    b = blurbs(:one)
-    assert b.valid?, "Valid fixture :one"
+  test "valid blurb" do
+    b = FactoryGirl.build(:blurb)
+    assert b.valid?, "Valid blurb (" + b.errors.full_messages.inspect + ")"
   end
 
   test "invalid without description" do
-    b = blurbs(:one)
+    b = FactoryGirl.build(:blurb)
     b.description = nil
-    assert !b.valid?, "Not valid without a description" + b.errors.full_messages.inspect
+    assert !b.valid?, "Not valid without a description (" + b.errors.full_messages.inspect + ")"
   end
   
 end

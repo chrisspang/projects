@@ -2,7 +2,7 @@ require 'test_helper'
 
 class BuildersControllerTest < ActionController::TestCase
   setup do
-    @builder = builders(:one)
+    @builder = FactoryGirl.create(:builder)
   end
 
   test "should get index" do
