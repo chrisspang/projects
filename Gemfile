@@ -82,3 +82,5 @@ end
   gem "factory_girl_rails"
   gem "launchy"
 #end
+
+gem 'unicorn'
