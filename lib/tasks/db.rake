@@ -5,6 +5,6 @@ namespace :db do
 end
 
 # lib/tasks/db.rake
-['db:drop', 'db:reset', 'db:seed'].each do |t|
+['db:drop', 'db:reset'].each do |t|
   Rake::Task[t].enhance ['skip_prod']
 end
