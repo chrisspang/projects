@@ -33,9 +33,8 @@ placeMarker = (latLng) ->
     map: gmap_handler.getMap()
   })
 
-
 $ ->
-  if map_markers?
+  if $('#map').length
     buildMap(map_markers)
 
   # If map_add_marker==1 then listen for single clicks and
@@ -74,7 +73,7 @@ $ ->
 
 buildSearch = (tag) ->
   remote_url = tag.data('remote')
-  console.log(remote_url)
+#  console.log(remote_url)
   
   projects = new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
@@ -102,5 +101,5 @@ buildSearch = (tag) ->
 
 $ ->
   tag = $('#bloodhound .typeahead')
-  if tag?
+  if tag.length
     buildSearch(tag)
