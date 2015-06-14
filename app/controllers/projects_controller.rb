@@ -14,13 +14,7 @@ class ProjectsController < ApplicationController
       redirect_to @projects.first, notice: "You were redirected"
     end
 
-    @map_markers = Gmaps4rails.build_markers(@projects) do | project, marker |
-      marker.lat project.latitude
-      marker.lng project.longitude
-      marker.infowindow project.title
-    end
-
-    logger.info @map_markers
+    build_map_markers @projects
   end
 
   # GET /projects/1
@@ -37,6 +31,7 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
+    build_map_markers Project.all
   end
 
   # GET /projects/1/edit
@@ -105,5 +100,13 @@ class ProjectsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
       params.require(:project).permit(:name, :title, :verified, :latitude, :longitude, :builder_id)
+    end
+
+    def build_map_markers(projects)
+      @map_markers = Gmaps4rails.build_markers(projects) do | project, marker |
+        marker.lat project.latitude
+        marker.lng project.longitude
+        marker.infowindow project.title
+      end
     end
 end
