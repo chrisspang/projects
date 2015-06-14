@@ -1,5 +1,11 @@
 class DatasourcesController < ApplicationController
+  include NestoriaReadonly
+
+  # Ick, order matters
   before_action :set_datasource, only: [:show, :edit, :update, :destroy]
+  before_action only: [ :edit, :update, :destroy ] do
+    block_nestoria(@datasource, datasource_path(@datasource))
+  end
 
   # GET /datasources
   # GET /datasources.json
@@ -64,6 +70,7 @@ class DatasourcesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_datasource
+      logger.warn "RUNNING set_datasource"
       @datasource = Datasource.find(params[:id])
     end
 

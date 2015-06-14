@@ -1,5 +1,11 @@
 class BuildersController < ApplicationController
+  include NestoriaReadonly
+
+  # Ick, order matters
   before_action :set_builder, only: [:show, :edit, :update, :destroy]
+  before_action only: [ :edit, :update, :destroy ] do
+    block_nestoria(@builder, datasource_path(@builder))
+  end
 
   # GET /builders
   # GET /builders.json
