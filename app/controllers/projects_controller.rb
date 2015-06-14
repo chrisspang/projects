@@ -14,10 +14,6 @@ class ProjectsController < ApplicationController
       redirect_to @projects.first, notice: "You were redirected"
     end
 
-    # @books = Book.includes(:genres).
-    # search(params[:keyword]).filter(params[:filter])
-    # @genres = Genre.all
-
     @map_markers = Gmaps4rails.build_markers(@projects) do | project, marker |
       marker.lat project.latitude
       marker.lng project.longitude
@@ -51,6 +47,8 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(project_params)
+
+    @project.builder = Builder.find_by_name('nestoria') if @project.builder.nil?
 
     respond_to do |format|
       if @project.save
